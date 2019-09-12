@@ -159,12 +159,13 @@ header.masthead .bg-circle-4 {
 }
 
 table, th, td {
-  border: 3px solid #0EAD69 !important; 
-  background-color: white !important;
+  border: 2px solid #4682B4 !important; 
+  background-color: #B0C4DE !important;
+  table-layout: fixed;
 }
 
 th {
-  color: #D90429;
+  color: #4682B4;
 }
 
 td {
@@ -177,9 +178,11 @@ td {
 
 .table_title {
   color: black;
-  font-weight: 900;
+  font-weight: 100;
   text-align: center;
-  font-size: 24px;
+  font-size: 30px;
+  font-weight: bold;
+
 }
 
 .nav-link {
@@ -187,7 +190,7 @@ td {
 }
 
 .create_btn {
-  border: 3px solid #0EAD69;
+  border: 3px solid #4682B4;
   text-align: center;
   margin-left:auto;
   margin-right:auto;
@@ -202,7 +205,7 @@ td {
 }
 
 .create_form {
-  border: 3px solid #0EAD69;
+  border: 3px solid #4682B4;
   border-radius: 5%;
   margin-top: 50px;
   padding: 50px;
@@ -210,7 +213,7 @@ td {
 }
 
 input[type] {
-  border: 3px solid #0EAD69;
+  border: 3px solid #4682B4;
   border-radius: 5%;
 }
 
