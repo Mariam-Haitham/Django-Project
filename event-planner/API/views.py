@@ -9,7 +9,6 @@ from .permissions import IsOwner
 from django.contrib import messages
 
 
-
 class EventList(ListAPIView):
 	queryset = Event.objects.filter(date__gte=datetime.today())
 	serializer_class = EventListSerializer
@@ -50,15 +49,12 @@ class UpdateEvent(RetrieveUpdateAPIView):
 	lookup_url_kwarg = 'event_id'
 
 
-
 class EventDetails(ListAPIView):
 	serializer_class = EventDetailSerializer
 	permission_classes = [IsAuthenticated, IsOwner]
 
 	def get_queryset(self):
 		return Booking.objects.filter(event__id=self.kwargs['event_id'])
-
-
 
 class BookEvent(CreateAPIView):
 	queryset = Event.objects.all()

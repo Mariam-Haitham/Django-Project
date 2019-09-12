@@ -23,7 +23,7 @@ class Event(models.Model):
         return self.seats - self.get_seats_booked()
 
     def full(self):
-        return self.get_seats_left == 0
+        return self.get_seats_left() == 0
 
     def get_absolute_url(self):
         return reverse('events:detail', kwargs={'event_id':self.id})

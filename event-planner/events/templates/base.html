@@ -25,7 +25,7 @@
         }
         .messages{
             position: absolute;
-            margin-top: 2px;
+            margin-top: 0.5px;
             z-index: 10;
             width: 100%;
         }
@@ -36,17 +36,27 @@
             color:white;
           
         }
-        
+        .topright {
+              position: absolute;
+              top: 56px;
+              right: 16px;
+              font-size: 16px;
 
+
+}
+      .row{
+        padding-top: 40px;
+        }
     </style>
   </head>
-
+    
   <body>
+
     {% include "navbar.html" %}
     {% include "messages.html" %}
     
     {% block content %}
-
+    
     {% endblock %}
 
 

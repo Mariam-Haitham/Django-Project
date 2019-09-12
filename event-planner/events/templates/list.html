@@ -3,13 +3,6 @@
 {% block title %}List{% endblock title %}
 
 {% block content %}
-<br>
-<form action="{% url 'events:list' %}" method="GET">
-    <input type="text" name='q' placeholder="Search here..." value="{{request.GET.q}}" 
-    style= "margin: 10px;">
-    <input type="submit" value="Search">
-</form>
-
 <div class="row">
     {% for event in events %}
     <div class="col-md-4">
@@ -27,5 +20,5 @@
     </div>
     {% endfor %}
 </div>
-{% endblock content %}
 
+{% endblock content %}

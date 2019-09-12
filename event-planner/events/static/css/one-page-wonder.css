@@ -30,7 +30,7 @@ h6 {
 
 .navbar-custom {
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: -1rem;
   background-color: gray;
 }
 
@@ -166,10 +166,13 @@ table, th, td {
 
 th {
   color: #4682B4;
+  text-align: center;
 }
 
 td {
   color: black;
+  text-align: center;
+  margin: auto;
 }
 
 .navbar {
@@ -187,6 +190,7 @@ td {
 
 .nav-link {
   color: black !important;
+  text-align: center;
 }
 
 .create_btn {
@@ -212,7 +216,7 @@ td {
   font-weight: 900;
 }
 
-input[type] {
+input[type], .textarea {
   border: 3px solid #4682B4;
   border-radius: 5%;
 }
@@ -224,10 +228,13 @@ input[type] {
 }
 
 
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
 
-
-
-
-
-
-
+.search-box {
+  margin-top: 20px;
+}
