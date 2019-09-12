@@ -10,6 +10,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'events:signup' %}">Sign Up</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" href="{% url 'events:login' %}">Log In</a>
         </li>
@@ -20,6 +21,10 @@
         
         <li class="nav-item">
           <a class="nav-link" href="{% url 'events:dashboard' %}">{{ request.user }}</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'events:update_profile' request.user.id %}">Profile</a>
         </li>
         {% endif %}
       </ul>

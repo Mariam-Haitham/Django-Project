@@ -1,15 +1,16 @@
 from django.views import View
+from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 
 from .models import Event, Booking
 from .forms import UserSignup, UserLogin, EventForm ,BookingForm
 
+#import datetime as dt
 from datetime import datetime, date
-import datetime as dt
-from django.db.models import Q
-from django.utils import timezone
+from django.utils.timezone import now, localtime
 
 
 def home(request):
@@ -186,20 +187,38 @@ def cancel_booking(request, booking_id):
     owner = booking.user
     if not owner == request.user:
          messages.warning(request, "You are not authorized to cancel this booking!")
-         return redirect("events:dashboard")
-    hours_left = datetime.combine(date.today(), booking.event.time) - datetime.combine(date.today(), timezone.now().time())
-    if hours_left < dt.timedelta(hours=3):
+         return redirect("events:home")
+    d = datetime.combine(booking.event.date, booking.event.time)
+    today = datetime.today()
+    diff = d - today
+    days, seconds = diff.days, diff.seconds
+    hours = days * 24 + seconds // 3600
+    if today <= d and hours > 3:
+        booking.delete()
+    else:
         messages.warning(request, "Booking can not be cancled unless more than 3 hours are left!")
-        return redirect("events:dashboard")
-    booking.delete()
+        return redirect("events:dashboard")    
     messages.success(request, "Successfully Deleted!")
     return redirect('events:dashboard')
 
-
-
-
-
-
-
-
-
+def update_profile(request, user_id):
+    if request.user.is_anonymous:
+        messages.warning(request, "You have to log in first!")
+        return redirect("events:home")
+    if not user_id == request.user.id:
+         messages.warning(request, "You are not authorized to edit this event!")
+         return redirect("events:home")
+    user = User.objects.get(id=user_id)
+    form = UserSignup(instance = user)
+    if request.method == 'POST':
+        form =UserSignup(request.POST, instance = user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(user.password)
+            user.save()
+            login(request, user)
+            messages.success(request, "Updated Successfully!")
+    context = {
+        "form":form,
+    }
+    return render(request, 'update_profile.html', context)
